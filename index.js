@@ -1,12 +1,8 @@
-var express = require('express')
-var app = express()
+import temp from './testM.js';
 
-app.get('/', function(req, res) {
-  res.send('hello world')
-})
-
-app.get('/1', function(req, res) {
-  res.send('1')
-})
-
-app.listen(3000)
+let olddata=[{name:"suraj"}]
+let newdata={name:"harini"}
+var as=temp(olddata)
+console.log(as.Display())
+as.Add(newdata);
+console.log(as.data)
