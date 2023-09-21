@@ -553,6 +553,11 @@
   dependencies:
     "picomatch" "^2.2.1"
 
+"routes@^2.1.0":
+  "integrity" "sha512-ipKiJOw1LUmlfusmWq0XWGJRVT4FdB8ymKvct2OpjN6lXYQa7W/tJjD75W7bzYghdfV1eObdM3Gh7vuVwttPcA=="
+  "resolved" "https://registry.npmjs.org/routes/-/routes-2.1.0.tgz"
+  "version" "2.1.0"
+
 "safe-buffer@5.2.1":
   "integrity" "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ=="
   "resolved" "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz"
