@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.send('hello world index')
 });
 
+router.post('/post', function(req, res, next) {
+  res.send('hello world index'+JSON.stringify(req.body))
+});
+
 export default router;

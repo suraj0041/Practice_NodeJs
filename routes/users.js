@@ -1,6 +1,14 @@
 import express from 'express';
 var router = express.Router();
 import readData, { writeData } from '../utility/FileOperation.js';
+import GenerateID from '../utility/GenerateID.js';
+const user = {
+  id: 3,
+  name: "New User",
+  age: 30,
+  language: ["PHP", "Go", "JavaScript"]
+};
+
 //---------------------------------------------------------------------
 function getUser() {
   let data = [];
@@ -11,14 +19,7 @@ function getUser() {
 //---------------------------------------------------------------------
 function addUser() {
   let oldData = getUser();
-
-  let user = {
-    id: 4,
-    name: "New User",
-    age: 30,
-    language: ["PHP", "Go", "JavaScript"]
-  };
-
+  user.id=GenerateID("UID");
   oldData.push(user)
   writeData("Users", oldData);
 }
@@ -30,9 +31,13 @@ function deleteUser(id) {
   return oldData;
 }
 //---------------------------------------------------------------------
-function editUser(id) {
-  
-
+function editUser(editobj) {
+  let oldData = getUser();
+  let objIndex = oldData.findIndex((obj => obj.id == editobj.id));
+  console.log(objIndex);
+  oldData[objIndex].name = editobj.name;
+  oldData[objIndex].age = editobj.age;
+  writeData("Users", oldData);
 }
 //---------------------------------------------------------------------
 /* GET users listing. */
@@ -40,17 +45,20 @@ router.get('/', function (req, res, next) {
   res.send(JSON.stringify(getUser()));
 });
 //---------------------------------------------------------------------
-router.get('/add', function (req, res, next) {
+router.post('/add', function (req, res, next) {
   res.send(addUser());
 });
 
 //---------------------------------------------------------------------
-router.get('/delete', function (req, res, next) {
+router.post('/delete', function (req, res, next) {
   res.send(JSON.stringify((deleteUser(4))));
 });
 //---------------------------------------------------------------------
-router.get('/edit', function (req, res, next) {
-  res.send(JSON.stringify(getUser()));
+router.post('/edit', function (req, res, next) {
+  user.name=req.body?.name;
+  user.age=req.body?.age;
+  editUser(user);
+  res.send("Edit successful....");
 });
 
 export default router;
