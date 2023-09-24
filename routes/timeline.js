@@ -21,7 +21,7 @@ function TimelineModal(profileimage="",username="",title="",comment="",images=[]
 //--------------------------------------------------
 function getTimeline() {
     let postdata = readData("tblPost");
-    let userdata = readData("Users");
+    let userdata = readData("tblUsers");
     let output = [];
     for (let i = 0; i < postdata.length; i++) {
         let objuser = userdata.filter(x => x.id === postdata[i].userid)[0];

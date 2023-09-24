@@ -2,32 +2,37 @@ import express from 'express';
 var router = express.Router();
 import readData, { writeData } from '../utility/FileOperation.js';
 import GenerateID from '../utility/GenerateID.js';
-const user = {
-  id: 3,
-  name: "New User",
-  age: 30,
-  language: ["PHP", "Go", "JavaScript"]
-};
+
+const tblName="tblUsers";
+function User(name,age,profileimage) {
+  return {
+    id: GenerateID("UID"),
+    name,
+    age,
+    profileimage,
+    isActive:true
+  }
+}
 
 //---------------------------------------------------------------------
 function getUser() {
   let data = [];
-  data = readData("Users")
+  data = readData(tblName)
   return data;
 }
 
 //---------------------------------------------------------------------
-function addUser() {
+function addUser(name,age,profileimage) {
   let oldData = getUser();
-  user.id=GenerateID("UID");
-  oldData.push(user)
-  writeData("Users", oldData);
+  let newUser=User(name,age,profileimage)
+  oldData.push(newUser)
+  writeData(tblName, oldData);
 }
 //---------------------------------------------------------------------
 function deleteUser(id) {
   let oldData = getUser();
   oldData = oldData.filter(x => x.id !== id);
-  writeData("Users", oldData);
+  writeData(tblName, oldData);
   return oldData;
 }
 //---------------------------------------------------------------------
@@ -37,7 +42,7 @@ function editUser(editobj) {
   console.log(objIndex);
   oldData[objIndex].name = editobj.name;
   oldData[objIndex].age = editobj.age;
-  writeData("Users", oldData);
+  writeData(tblName, oldData);
 }
 //---------------------------------------------------------------------
 /* GET users listing. */
@@ -46,7 +51,7 @@ router.get('/', function (req, res, next) {
 });
 //---------------------------------------------------------------------
 router.post('/add', function (req, res, next) {
-  res.send(addUser());
+  res.send(addUser(req.body?.name,req.body?.age,req.body?.profileimage));
 });
 
 //---------------------------------------------------------------------
