@@ -4,13 +4,15 @@ import readData, { writeData } from '../utility/FileOperation.js';
 import GenerateID from '../utility/GenerateID.js';
 
 const tblName="tblPost";
-const PostTLModal = {
-  id:0,
-  userid: "",
-  title: "",
-  comment: "",
-  images: [],
-  postedtime: ""
+function PostTLModal(id=0,userid=0,title="",comment="",images=[],postedtime="") {
+  return {
+    id,
+    userid,
+    title,
+    comment,
+    images,
+    postedtime
+  }
 };
 
 //---------------------------------------------------------------------------------------------
@@ -34,15 +36,11 @@ function addPost(post){
 /* Post home page. */
 router.post('/add', function(req, res, next) {
 
-  PostTLModal.id=GenerateID("PID");
-  PostTLModal.userid=req.body?.userid;
-  PostTLModal.title=req.body?.title;
-  PostTLModal.comment=req.body?.comment;
-  PostTLModal.images=req.body?.images;
-  PostTLModal.postedtime=Date();
-  addPost(PostTLModal);
+  console.log(JSON.stringify(req.body));
+  let NewPost=PostTLModal(GenerateID("PID"),req.body?.userid,req.body?.title,req.body?.comment,req.body?.images,Date())
+  addPost(NewPost);
 
-  res.send('Added successful....')
+  res.status(200).send('Added successful....')
 });
 
 

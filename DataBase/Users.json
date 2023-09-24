@@ -3,44 +3,31 @@
         "id": "UID_1695399944788",
         "name": "John",
         "age": 21,
-        "language": [
-            "JavaScript",
-            "PHP",
-            "Python"
-        ]
+        "profileimage": "./images/avatar_f1.png"
     },
     {
         "id": "UID_1695399988374",
         "name": "Smith",
         "age": 25,
-        "language": [
-            "PHP",
-            "Go",
-            "JavaScript"
-        ]
+        "profileimage": "./images/avatar_m1.png"
     },
     {
         "id": 3,
         "name": "suraj",
-        "age": 28,
-        "language": [
-            "PHP",
-            "Go",
-            "JavaScript"
-        ]
+        "age": 28
     },
     {
         "id": 4,
         "name": "New User",
-        "age": 30,
-        "language": [
-            "PHP",
-            "Go",
-            "JavaScript"
-        ]
+        "age": 30
     },
     {
         "id": 4,
+        "name": "New User",
+        "age": 30
+    },
+    {
+        "id": "UID_1695541254840",
         "name": "New User",
         "age": 30,
         "language": [
